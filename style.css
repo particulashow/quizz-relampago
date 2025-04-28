@@ -2,55 +2,71 @@ body {
   margin: 0;
   padding: 0;
   background: transparent;
-  font-family: 'Montserrat', sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  font-family: 'Montserrat', sans-serif;
   overflow: hidden;
 }
 
 #quiz-container {
   background: rgba(0, 0, 0, 0.7);
-  padding: 40px;
+  padding: 30px;
   border-radius: 12px;
-  color: white;
+  width: 80%;
+  max-width: 800px;
   text-align: center;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
 }
 
-h1 {
-  font-size: 2rem;
+#question {
+  font-size: 2em;
   margin-bottom: 30px;
-}
-
-#options {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 15px;
-  margin-bottom: 20px;
-}
-
-.option-btn {
-  padding: 15px;
-  border: none;
-  border-radius: 8px;
-  background: linear-gradient(90deg, #00f2fe, #4facfe);
   color: white;
-  font-size: 1.2rem;
-  font-weight: bold;
+}
+
+#answers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+
+.answer {
+  background: #333;
+  color: white;
+  padding: 15px 30px;
+  border-radius: 10px;
   cursor: pointer;
-  transition: transform 0.2s, background 0.3s;
+  transition: 0.3s;
+  font-size: 1.2em;
+  min-width: 120px;
 }
 
-.option-btn:hover {
-  transform: scale(1.05);
-  background: linear-gradient(90deg, #4facfe, #00f2fe);
+.answer:hover {
+  background: #555;
 }
 
-#result {
+.correct {
+  background-color: #4caf50 !important;
+}
+
+.incorrect {
+  background-color: #f44336 !important;
+}
+
+#progress-bar-container {
   margin-top: 20px;
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #00ff00;
+  background: #555;
+  height: 10px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+#progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #00f2fe, #4facfe);
+  width: 100%;
+  transition: width 0.1s linear;
 }
