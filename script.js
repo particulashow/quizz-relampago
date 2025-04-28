@@ -9,7 +9,7 @@ const optC = params.get('optC') || "Faro";
 const optD = params.get('optD') || "Braga";
 
 const optionsList = [optA, optB, optC, optD];
-const time = parseInt(params.get('time')) || 10000; // Tempo em ms (default 10s)
+const time = parseInt(params.get('time')) || 10000; // Tempo em ms
 
 const questionEl = document.getElementById('question');
 const answersEl = document.getElementById('answers');
@@ -28,7 +28,10 @@ function loadQuiz() {
     const btn = document.createElement('div');
     btn.classList.add('answer');
     btn.id = `answer-${answer.toLowerCase()}`;
-    btn.textContent = answer;
+    btn.innerHTML = `
+      ${answer}
+      <span class="vote-count" id="count-${answer.toLowerCase()}">0</span>
+    `;
     answersEl.appendChild(btn);
   });
 
@@ -59,9 +62,15 @@ function fetchVotes() {
     .then(response => response.json())
     .then(data => {
       const words = (data.wordcloud || "").toLowerCase().split(',');
+
       optionsList.forEach(opt => {
         const count = words.filter(word => word.trim() === opt.toLowerCase()).length;
         votes[opt.toLowerCase()] = count;
+
+        const countEl = document.getElementById(`count-${opt.toLowerCase()}`);
+        if (countEl) {
+          countEl.textContent = count;
+        }
       });
     })
     .catch(error => console.error("Erro ao buscar votos:", error));
