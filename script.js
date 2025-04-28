@@ -1,37 +1,61 @@
-const correctAnswer = "A"; // Resposta certa
-const streamId = "748c0ff7"; // substitui pelo teu se necessário
-const socket = new WebSocket(`wss://io.socialstream.ninja?streamId=${streamId}`);
+// Pergunta e respostas
+const questionData = {
+  question: "Qual é a capital de Portugal?",
+  answers: ["Lisboa", "Porto", "Faro", "Braga"],
+  correct: "Lisboa"
+};
 
-document.querySelectorAll(".option-btn").forEach(button => {
-  button.addEventListener("click", () => {
-    const selected = button.id.slice(-1);
-    showResult(selected);
+const questionEl = document.getElementById('question');
+const answersEl = document.getElementById('answers');
+const progressBar = document.getElementById('progress-bar');
+
+let time = 10000; // 10 segundos
+let timerInterval;
+let width = 100;
+
+// Inicializar o quiz
+function loadQuiz() {
+  questionEl.textContent = questionData.question;
+  answersEl.innerHTML = '';
+
+  questionData.answers.forEach(answer => {
+    const btn = document.createElement('div');
+    btn.classList.add('answer');
+    btn.textContent = answer;
+    btn.addEventListener('click', () => checkAnswer(answer));
+    answersEl.appendChild(btn);
   });
-});
 
-socket.addEventListener("open", () => {
-  console.log("Ligado ao WebSocket para o Quiz!");
-});
-
-socket.addEventListener("message", (event) => {
-  const data = JSON.parse(event.data);
-
-  if (data.type === "chat-message") {
-    const message = data.message.trim().toUpperCase();
-    if (["A", "B", "C", "D"].includes(message)) {
-      showResult(message);
-    }
-  }
-});
-
-function showResult(selected) {
-  const result = document.getElementById("result");
-
-  if (selected === correctAnswer) {
-    result.textContent = "Correto! 🎉";
-    result.style.color = "#00ff00";
-  } else {
-    result.textContent = "Errado! ❌";
-    result.style.color = "#ff4040";
-  }
+  startTimer();
 }
+
+// Função para verificar a resposta
+function checkAnswer(selected) {
+  clearInterval(timerInterval);
+
+  const allAnswers = document.querySelectorAll('.answer');
+  allAnswers.forEach(ans => {
+    if (ans.textContent === questionData.correct) {
+      ans.classList.add('correct');
+    } else {
+      ans.classList.add('incorrect');
+    }
+  });
+}
+
+// Função para gerir o tempo
+function startTimer() {
+  width = 100;
+  progressBar.style.width = width + "%";
+
+  timerInterval = setInterval(() => {
+    width -= 100 / (time / 100);
+    if (width <= 0) {
+      clearInterval(timerInterval);
+      checkAnswer(null);
+    }
+    progressBar.style.width = width + "%";
+  }, 100);
+}
+
+loadQuiz();
