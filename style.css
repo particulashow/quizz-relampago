@@ -42,10 +42,22 @@ body {
   transition: 0.3s;
   font-size: 1.2em;
   min-width: 120px;
+  position: relative;
 }
 
 .answer.highlight {
   background-color: #4caf50 !important;
+}
+
+.vote-count {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  background: #555;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 0.8em;
+  color: white;
 }
 
 #progress-bar-container {
