@@ -44,16 +44,8 @@ body {
   min-width: 120px;
 }
 
-.answer:hover {
-  background: #555;
-}
-
-.correct {
+.answer.highlight {
   background-color: #4caf50 !important;
-}
-
-.incorrect {
-  background-color: #f44336 !important;
 }
 
 #progress-bar-container {
