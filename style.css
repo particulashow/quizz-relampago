@@ -53,8 +53,8 @@ h1 {
   background: rgba(255, 255, 255, 0.2);
 }
 
-#barA { background: rgba(76, 175, 80, 0.7); }
-#barB { background: rgba(244, 67, 54, 0.7); }
+#barA { background: rgba(76, 175, 80, 0.7); } /* Verde */
+#barB { background: rgba(33, 150, 243, 0.7); } /* Azul novo */
 
 .option-text {
   z-index: 1;
