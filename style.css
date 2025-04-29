@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  background: linear-gradient(135deg, #1f1f2e, #1c1c2d);
+  background: transparent;
   font-family: 'Montserrat', sans-serif;
   display: flex;
   justify-content: center;
@@ -17,6 +17,7 @@ body {
 h1 {
   font-size: 3rem;
   margin-bottom: 2rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
 
 .options {
@@ -27,12 +28,14 @@ h1 {
 }
 
 .option {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.5); /* levemente escuro para separar do fundo */
   border-radius: 10px;
   padding: 15px 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  overflow: hidden;
+  position: relative;
 }
 
 .option-bar {
@@ -46,7 +49,14 @@ h1 {
   background: rgba(255, 255, 255, 0.2);
 }
 
-#barA { background: #4caf50; }
-#barB { background: #f44336; }
-#barC { background: #2196f3; }
-#barD { background: #ffc107; }
+#barA { background: rgba(76, 175, 80, 0.7); }
+#barB { background: rgba(244, 67, 54, 0.7); }
+#barC { background: rgba(33, 150, 243, 0.7); }
+#barD { background: rgba(255, 193, 7, 0.7); }
+
+.option-text {
+  z-index: 1;
+  width: 100%;
+  text-align: left;
+  padding-left: 10px;
+}
