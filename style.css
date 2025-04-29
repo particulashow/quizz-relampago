@@ -34,3 +34,19 @@ h1 {
   justify-content: space-between;
   align-items: center;
 }
+
+.option-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  border-radius: 10px;
+  z-index: 0;
+  transition: width 0.5s ease-in-out;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+#barA { background: #4caf50; }
+#barB { background: #f44336; }
+#barC { background: #2196f3; }
+#barD { background: #ffc107; }
