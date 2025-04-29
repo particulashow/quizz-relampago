@@ -23,14 +23,14 @@ h1 {
 .options {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 30px;
   font-size: 2rem;
 }
 
 .option {
-  background: rgba(0, 0, 0, 0.5); /* levemente escuro para separar do fundo */
+  background: rgba(0, 0, 0, 0.5);
   border-radius: 10px;
-  padding: 15px 30px;
+  padding: 20px 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -51,8 +51,6 @@ h1 {
 
 #barA { background: rgba(76, 175, 80, 0.7); }
 #barB { background: rgba(244, 67, 54, 0.7); }
-#barC { background: rgba(33, 150, 243, 0.7); }
-#barD { background: rgba(255, 193, 7, 0.7); }
 
 .option-text {
   z-index: 1;
