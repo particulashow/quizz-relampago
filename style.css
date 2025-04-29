@@ -18,6 +18,10 @@ h1 {
   font-size: 3rem;
   margin-bottom: 2rem;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.5); /* Adicionado fundo semi-transparente */
+  padding: 20px 40px;
+  border-radius: 12px;
+  display: inline-block;
 }
 
 .options {
@@ -57,4 +61,5 @@ h1 {
   width: 100%;
   text-align: left;
   padding-left: 10px;
+  font-weight: bold; /* Deixa o texto em negrito */
 }
