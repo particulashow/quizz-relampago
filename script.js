@@ -1,7 +1,7 @@
 const params = new URLSearchParams(window.location.search);
 
 // Configurações
-const domain = params.get('domain') || 'http://localhost:4000';
+const domain = params.get('domain') || 'http://localhost:3900';
 const question = params.get('question') || "Qual é a capital de Portugal?";
 const optA = params.get('optA') || "Lisboa";
 const optB = params.get('optB') || "Porto";
