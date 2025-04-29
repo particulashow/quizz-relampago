@@ -1,76 +1,20 @@
 body {
   margin: 0;
   padding: 0;
-  background: transparent;
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   font-family: 'Montserrat', sans-serif;
-  overflow: hidden;
 }
 
-#quiz-container {
-  background: rgba(0, 0, 0, 0.7);
-  padding: 30px;
-  border-radius: 12px;
-  width: 80%;
-  max-width: 800px;
-  text-align: center;
-  box-shadow: 0 0 20px rgba(0,0,0,0.5);
-}
-
-#question {
-  font-size: 2em;
-  margin-bottom: 30px;
-  color: white;
-}
-
-#answers {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-  justify-content: center;
-}
-
-.answer {
-  background: #333;
-  color: white;
-  padding: 15px 30px;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: 0.3s;
-  font-size: 1.2em;
-  min-width: 120px;
-  position: relative;
-}
-
-.answer.highlight {
-  background-color: #4caf50 !important;
-}
-
-.vote-count {
-  position: absolute;
-  top: 5px;
-  right: 10px;
-  background: #555;
-  padding: 2px 8px;
-  border-radius: 10px;
-  font-size: 0.8em;
-  color: white;
-}
-
-#progress-bar-container {
-  margin-top: 20px;
-  background: #555;
-  height: 10px;
-  border-radius: 5px;
-  overflow: hidden;
-}
-
-#progress-bar {
-  height: 100%;
-  background: linear-gradient(90deg, #00f2fe, #4facfe);
+#chartdiv {
   width: 100%;
-  transition: width 0.1s linear;
+  height: 100vh;
+}
+
+/* Esconde o logo do amCharts */
+#chartdiv > div > div:nth-child(1) > div > canvas:nth-child(2) {
+  display: none;
 }
