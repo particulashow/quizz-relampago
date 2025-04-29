@@ -1,26 +1,30 @@
-// Ler parâmetros da URL
 const params = new URLSearchParams(window.location.search);
-const questionText = params.get('question') || 'Qual a tua cor preferida?';
-const optA = params.get('optA') || 'Azul';
-const optB = params.get('optB') || 'Vermelho';
-const optC = params.get('optC') || 'Verde';
-const optD = params.get('optD') || 'Amarelo';
+const questionText = params.get('question') || 'Quem vai ganhar?';
+const optA = params.get('optA') || 'Equipe A';
+const optB = params.get('optB') || 'Equipe B';
 const domain = params.get('domain') || 'http://localhost:3900';
 
 document.getElementById('question').innerText = questionText;
 
-let counts = {
-  A: 0,
-  B: 0,
-  C: 0,
-  D: 0
-};
+function setupOptions() {
+  ['A', 'B'].forEach(letter => {
+    const div = document.getElementById('option' + letter);
+    div.innerHTML = `<div class="option-bar" id="bar${letter}"></div><div class="option-text" id="text${letter}"></div>`;
+  });
+}
+
+setupOptions();
+
+let counts = { A: 0, B: 0 };
 
 function updateDisplay() {
-  document.getElementById('optionA').innerText = `${optA}: ${counts.A}`;
-  document.getElementById('optionB').innerText = `${optB}: ${counts.B}`;
-  document.getElementById('optionC').innerText = `${optC}: ${counts.C}`;
-  document.getElementById('optionD').innerText = `${optD}: ${counts.D}`;
+  const total = counts.A + counts.B || 1;
+
+  document.getElementById('textA').innerText = `${optA}: ${counts.A}`;
+  document.getElementById('barA').style.width = `${(counts.A / total) * 100}%`;
+
+  document.getElementById('textB').innerText = `${optB}: ${counts.B}`;
+  document.getElementById('barB').style.width = `${(counts.B / total) * 100}%`;
 }
 
 function fetchData() {
@@ -31,8 +35,6 @@ function fetchData() {
 
       counts.A = chatHistory.filter(word => word.trim() === optA.toLowerCase()).length;
       counts.B = chatHistory.filter(word => word.trim() === optB.toLowerCase()).length;
-      counts.C = chatHistory.filter(word => word.trim() === optC.toLowerCase()).length;
-      counts.D = chatHistory.filter(word => word.trim() === optD.toLowerCase()).length;
 
       updateDisplay();
     })
@@ -41,5 +43,5 @@ function fetchData() {
 
 setInterval(fetchData, 1000);
 
-fetch(`${domain}/clear-chat?words=${optA},${optB},${optC},${optD}`)
+fetch(`${domain}/clear-chat?words=${optA},${optB}`)
   .then(() => setTimeout(fetchData, 500));
